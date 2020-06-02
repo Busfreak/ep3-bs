@@ -23,6 +23,9 @@ class CellLogic extends AbstractHelper
             }
         }
 
+        $reservationsForCell = $view->calendarReservationsForCell($reservationsForCol, $square);
+        $eventsForCell = $view->calendarEventsForCell($eventsForCol, $square);
+
         $minBookingRange = $square->get('min_range_book');
 
         if ($minBookingRange) {
@@ -34,7 +37,7 @@ class CellLogic extends AbstractHelper
                 $square->setExtra('min_range_book_date', $minBookingRangeDate);
             }
 
-            if ($walkingDate < $minBookingRangeDate) {
+            if ($walkingDate < $minBookingRangeDate && !$eventsForCell && !$reservationsForCell) {
                 if (! ($user && $user->can('calendar.see-past'))) {
                     return $view->calendarCell('Zu kurzfristig', 'cc-over');
                 }
@@ -52,7 +55,7 @@ class CellLogic extends AbstractHelper
                 $square->setExtra('range_book_date', $bookingRangeDate);
             }
 
-            if ($walkingDate > $bookingRangeDate) {
+            if ($walkingDate > $bookingRangeDate && !$eventsForCell && !$reservationsForCell) {
                 if (! ($user && $user->can('calendar.see-past'))) {
                     return $view->calendarCell($this->view->t('Too far'), 'cc-over');
                 }
@@ -62,9 +65,6 @@ class CellLogic extends AbstractHelper
         if ($walkingTime < $square->needExtra('time_start_sec') || $walkingTime >= $square->needExtra('time_end_sec')) {
             return $view->calendarCell($this->view->t('Closed'), 'cc-over');
         }
-
-        $reservationsForCell = $view->calendarReservationsForCell($reservationsForCol, $square);
-        $eventsForCell = $view->calendarEventsForCell($eventsForCol, $square);
 
         $timeBlockSplit = round($timeBlock / 2);
 
