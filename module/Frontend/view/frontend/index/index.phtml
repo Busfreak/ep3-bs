@@ -5,9 +5,11 @@ $this->headScript()->appendFile($this->basePath('js/controller/frontend/index.mi
 ?>
 
 <div id="calendar-toolbar" class="no-print">
-    <div id="calendar-toolbar-datepicker" class="panel">
-        <?= $this->partial('frontend/index/datepicker.phtml', ['dateStart' => $this->dateStart, 'dateNow' => $this->dateNow, 'squaresFilter' => $this->squaresFilter]) ?>
-    </div>
+    <?php if ($this->user): ?>
+        <div id="calendar-toolbar-datepicker" class="panel">
+            <?= $this->partial('frontend/index/datepicker.phtml', ['dateStart' => $this->dateStart, 'dateNow' => $this->dateNow, 'squaresFilter' => $this->squaresFilter]) ?>
+        </div>
+    <?php endif; ?>
 
     <div id="calendar-toolbar-userpanel" class="panel">
         <?php if ($this->user): ?>
@@ -18,4 +20,8 @@ $this->headScript()->appendFile($this->basePath('js/controller/frontend/index.mi
     </div>
 </div>
 
-<?= $this->calendar ?>
+<?php if ($this->user): ?>
+    <?= $this->calendar ?>
+<?php else: ?>
+    <?= $this->partial('service/service/info.phtml') ?>
+<?php endif; ?>
