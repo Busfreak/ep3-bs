@@ -66,6 +66,8 @@ class UserController extends AbstractActionController
             $user = null;
         }
 
+        $currendUserStatus = $user->get('status');
+
         $editUserForm = $formElementManager->get('Backend\Form\User\EditForm');
 
         if ($this->getRequest()->isPost()) {
@@ -155,6 +157,12 @@ class UserController extends AbstractActionController
                 $userManager->save($user);
 
                 $this->flashMessenger()->addSuccessMessage('User has been saved');
+
+                if ($currendUserStatus == 'disabled' && $status != 'disabled') {
+                    $mailMessage = $this->t('Your user account has been activated. You can now login with your email address and password. Have fun!');
+                    $userMailService = $serviceManager->get('User\Service\MailService');
+                    $userMailService->send($user, $this->t('Your account has been activated'), $mailMessage);
+                }
 
                 if ($search) {
                     return $this->redirect()->toRoute('backend/user', [], ['query' => ['usf-search' => $search]]);
