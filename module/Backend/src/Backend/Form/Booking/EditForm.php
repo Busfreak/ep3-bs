@@ -79,6 +79,22 @@ class EditForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'bf-teacher',
+            'type' => 'Select',
+            'attributes' => array(
+                'id' => 'bf-teacher',
+                'style' => 'width: 124px',
+            ),
+            'options' => array(
+                'label' => 'Teacher',
+                'value_options' => array(
+                    '0' => 'Nein',
+                    '1' => 'Ja'
+                ),
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'bf-quantity',
             'type' => 'Text',
             'attributes' => array(
