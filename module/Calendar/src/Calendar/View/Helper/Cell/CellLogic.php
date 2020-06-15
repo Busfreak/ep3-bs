@@ -17,7 +17,10 @@ class CellLogic extends AbstractHelper
     {
         $view = $this->getView();
 
-        if ($walkingDate <= $now) {
+        $dateMinBooking = clone $now;
+        $dateMinBooking->modify('-' .  $square->get('time_block') . ' seconds');
+
+        if ($walkingDate <= $dateMinBooking) {
             if (! ($user && $user->can('calendar.see-past'))) {
                 return $view->calendarCell($this->view->t('Past'), 'cc-over');
             }
