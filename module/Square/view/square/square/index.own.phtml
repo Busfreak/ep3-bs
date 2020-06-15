@@ -14,7 +14,7 @@ foreach ($this->bookingsFromUser as $bid => $booking) {
     }
 }
 
-if ($this->bookable) {
+if ($this->bookable && false) {
     echo sprintf('<p><span class="green">' . $this->t('This %s is still free.') . '</span></p>', $squareType);
 
     $url = $this->url('square', [], ['query' => [
