@@ -13,6 +13,7 @@ use Exception;
 use RuntimeException;
 use Square\Manager\SquareManager;
 use User\Manager\UserSessionManager;
+use User\Manager\UserManager;
 
 class SquareValidator extends AbstractService
 {
@@ -23,10 +24,11 @@ class SquareValidator extends AbstractService
     protected $squareManager;
     protected $optionManager;
     protected $user;
+	protected $userManager;
 
     public function __construct(BookingManager $bookingManager, ReservationManager $reservationManager,
         EventManager $eventManager, SquareManager $squareManager, UserSessionManager $userSessionManager,
-        OptionManager $optionManager)
+        OptionManager $optionManager, UserManager $userManager)
     {
         $this->bookingManager = $bookingManager;
         $this->reservationManager = $reservationManager;
@@ -34,6 +36,7 @@ class SquareValidator extends AbstractService
         $this->squareManager = $squareManager;
         $this->optionManager = $optionManager;
         $this->user = $userSessionManager->getSessionUser();
+		$this->userManager = $userManager;
     }
 
     /**
@@ -286,6 +289,7 @@ class SquareValidator extends AbstractService
                     $reservations[$rid] = $reservation;
                 }
             }
+            $this->userManager->getByBookings($bookings);
         }
 
         $capacity = $square->need('capacity');
