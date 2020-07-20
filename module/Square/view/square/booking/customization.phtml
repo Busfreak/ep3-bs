@@ -10,6 +10,7 @@ $this->setup(array(
 ));
 
 echo $this->ajaxAwareScript('js/controller/square/booking/customization.min.js');
+echo $this->ajaxAwareScript('js-client/controller/square/booking/customization.js');
 
 ?>
 
@@ -29,6 +30,10 @@ echo $this->ajaxAwareScript('js/controller/square/booking/customization.min.js')
 
     <div class="sandbox">
         <?= $this->squareQuantityChoice($square, $this->bookings) ?>
+    </div>
+
+    <div class="sandbox">
+        <?= $this->squareTeacherChoice($square, $this->bookings) ?>
     </div>
 
     <div class="separator separator-line"></div>
@@ -55,7 +60,8 @@ echo $this->ajaxAwareScript('js/controller/square/booking/customization.min.js')
         's' => $square->need('sid'),
         'q' => 1,
         'p' => 0,
-        'pn' => 0]]);
+        'pn' => 0,
+		't' => 0]]);
 
     echo sprintf('<a href="%s" id="sb-button" class="default-button squarebox-internal-link">%s</a>',
         $url, $this->t('Continue to summary'));
