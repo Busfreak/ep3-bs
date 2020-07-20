@@ -51,6 +51,7 @@ class BookingController extends AbstractActionController
         $quantityParam = $this->params()->fromQuery('q', 1);
         $productsParam = $this->params()->fromQuery('p', 0);
         $playerNamesParam = $this->params()->fromQuery('pn', 0);
+		$teacherParam = $this->params()->fromQuery('t', 0);
 
         $serviceManager = @$this->getServiceLocator();
         $squareValidator = $serviceManager->get('Square\Service\SquareValidator');
@@ -191,6 +192,7 @@ class BookingController extends AbstractActionController
                 $bookingService->createSingle($user, $square, $quantityParam, $byproducts['dateStart'], $byproducts['dateEnd'], $bills, array(
                     'player-names' => serialize($playerNames),
                     'notes' => $userNotes,
+                    'teacher' => $teacherParam,
                 ));
 
                 $this->flashMessenger()->addSuccessMessage(sprintf($this->t('%sCongratulations:%s Your %s has been booked!'),
