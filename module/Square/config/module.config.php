@@ -93,6 +93,7 @@ return array(
 
             'SquareProductChoice' => 'Square\View\Helper\ProductChoiceFactory',
             'SquareQuantityChoice' => 'Square\View\Helper\QuantityChoiceFactory',
+            'SquareConstructionsChoice' => 'Square\View\Helper\ConstructionsChoiceFactory',
             'SquareTimeBlockChoice' => 'Square\View\Helper\TimeBlockChoiceFactory',
         ),
     ),
