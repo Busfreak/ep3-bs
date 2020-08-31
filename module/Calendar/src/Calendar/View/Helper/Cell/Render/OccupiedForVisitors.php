@@ -11,6 +11,7 @@ class OccupiedForVisitors extends AbstractHelper
     public function __invoke(array $reservations, array $cellLinkParams, Square $square, $user = null)
     {
         $view = $this->getView();
+		$constructions = false;
 
         $reservationsCount = count($reservations);
 
@@ -19,6 +20,9 @@ class OccupiedForVisitors extends AbstractHelper
         } else {
             $reservation = current($reservations);
             $booking = $reservation->needExtra('booking');
+            if ($booking->getMeta('constructions') == 1) {
+                $constructions = true;
+            }
 
             if ($square->getMeta('public_names', 'false') == 'true') {
                 $cellLabel = $booking->needExtra('user')->need('alias');
@@ -42,6 +46,9 @@ class OccupiedForVisitors extends AbstractHelper
                         $cellLabel = $this->view->t('Subscription');
                     }
 
+        if ($constructions) {
+            $style .= " cc-constructions";
+        }
                     return $view->calendarCellLink($cellLabel, $view->url('square', [], $cellLinkParams), 'cc-multiple' . $cellGroup);
             }
         }

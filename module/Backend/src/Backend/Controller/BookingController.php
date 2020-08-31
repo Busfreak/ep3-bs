@@ -136,19 +136,23 @@ class BookingController extends AbstractActionController
 
                 /* Process form (note, that reservation and booking are not available here) */
 
+                if ($d['bf-constructions'] == 0) {
+                    $d['bf-constructions'] = null;
+                }
+
                 if ($d['bf-rid']) {
 
                     /* Update booking/reservation */
 
                     $savedBooking = $this->backendBookingUpdate($d['bf-rid'], $d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'],
-                        $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode']);
+                        $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode'], $d['bf-constructions']);
 
                 } else {
 
                     /* Create booking/reservation */
 
                     $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
-                        $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                        $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'), $d['bf-constructions']);
                 }
 
                 $this->flashMessenger()->addSuccessMessage('Booking has been saved');
@@ -172,6 +176,7 @@ class BookingController extends AbstractActionController
                     'bf-status-billing' => $booking->get('status_billing'),
                     'bf-quantity' => $booking->get('quantity'),
                     'bf-notes' => $booking->getMeta('notes'),
+                    'bf-constructions' => $booking->getMeta('constructions'),
                 ));
 
                 if ($booking->get('status') == 'subscription' && $params['editMode'] == 'booking') {

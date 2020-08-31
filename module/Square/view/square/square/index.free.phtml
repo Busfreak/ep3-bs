@@ -7,6 +7,16 @@ echo sprintf('<p><span class="green">' . $this->t('This %s is still free.') . '<
 
 echo $this->squareCapacityInfo($square, $this->quantity);
 
+foreach ($this->reservations as $rid => $reservation):
+    echo"<p>";
+        echo "<b>" . $this->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s') . "</b>";
+        echo " " . $this->t('from') . " " . $reservation->getExtra('booking')->getExtra('user')->get('alias');
+        if ($reservation->getExtra('booking')->getMeta('constructions') == 1) {
+            echo " " . "(mit Aufbauten)";
+        }
+    echo "</p>";
+endforeach;
+
 if ($square->need('status') == 'readonly') {
     if ($square->getMeta('readonly.message')) {
         echo '<p class="gray">' . $square->getMeta('readonly.message') .'</p>';
@@ -17,7 +27,8 @@ if ($square->need('status') == 'readonly') {
     if ($this->user) {
         echo '<p>';
 
-        echo $this->ajaxAwareScript('js/controller/square/index.free.min.js');
+//        echo $this->ajaxAwareScript('js/controller/square/index.free.min.js');
+        echo $this->ajaxAwareScript('js-client/controller/square/index.free.js');
         echo $this->squareTimeBlockChoice($this->dateStart, $this->dateEnd, $square);
 
         if ($square->need('capacity') > 1 || $this->products) {
