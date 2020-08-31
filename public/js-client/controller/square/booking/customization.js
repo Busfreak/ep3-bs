@@ -6,8 +6,10 @@
         $("#sb-customization-panel").show();
 
         $("#sb-teacher").on("change keyup focusout", onTeacherChange);
+        $("#sb-constructions").on("change keyup focusout", onConstructionsChange);
 
         onTeacherChange();
+        onConstructionsChange();
 
     });
 
@@ -38,6 +40,19 @@
             }
 
             $(window).trigger("squarebox.update");
+        }
+
+    }
+
+    function onConstructionsChange() {
+        var quantity = $("#sb-constructions").val();
+        var sbButton = $("#sb-button");
+
+        if (sbButton.length) {
+            var oldHref = sbButton.attr("href");
+            var newHref = oldHref.replace(/c=[0-9]+/, "c=" + quantity);
+
+            sbButton.attr("href", newHref);
         }
 
     }

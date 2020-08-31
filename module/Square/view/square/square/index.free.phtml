@@ -11,6 +11,7 @@ foreach ($this->reservations as $rid => $reservation):
     echo"<p>";
         echo "<b>" . $this->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s') . "</b>";
         echo " " . $this->t('from') . " " . $reservation->getExtra('booking')->getExtra('user')->get('alias');
+<<<<<<< HEAD
 
         $booking = $reservation->getExtra('booking');
         $playerNames = $booking->getMeta('player-names');
@@ -27,6 +28,10 @@ foreach ($this->reservations as $rid => $reservation):
 
         if ($booking->getMeta('teacher') == 1) {
             echo " " . $this->t('(with teacher)');
+=======
+        if ($reservation->getExtra('booking')->getMeta('constructions') == 1) {
+            echo " " . "(mit Aufbauten)";
+>>>>>>> 740096d... Add Constructions to Booking
         }
     echo "</p>";
 endforeach;
@@ -41,7 +46,8 @@ if ($square->need('status') == 'readonly') {
     if ($this->user) {
         echo '<p>';
 
-        echo $this->ajaxAwareScript('js/controller/square/index.free.min.js');
+//        echo $this->ajaxAwareScript('js/controller/square/index.free.min.js');
+        echo $this->ajaxAwareScript('js-client/controller/square/index.free.js');
         echo $this->squareTimeBlockChoice($this->dateStart, $this->dateEnd, $square);
 
         if ($square->need('capacity') > 1 || $this->products) {

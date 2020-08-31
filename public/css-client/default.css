@@ -26,6 +26,10 @@ a.cc-conflict:link,
 a.cc-conflict:visited { background-color: #334F6A; }
 a.cc-conflict:hover { background-color: #334F6A; }
 
+a.cc-constructions:link,
+a.cc-constructions:visited { opacity: 1.0; color: black; border: 2px solid #d13b45; margin: -2px; background-image: url(../imgs/icons/plus.png); background-repeat: no-repeat; background-position: left top; }
+a.cc-constructions:hover { color: white; background-color: #d13b45; }
+
 /* Layout - Alternate Calendar */
 
 .cc-range-member a {

@@ -95,6 +95,22 @@ class EditForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'bf-constructions',
+            'type' => 'Select',
+            'attributes' => array(
+                'id' => 'bf-constructions',
+                'style' => 'width: 124px',
+            ),
+            'options' => array(
+                'label' => 'Constructions',
+                'value_options' => array(
+                    '0' => 'Nein',
+                    '1' => 'Ja'
+                ),
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'bf-quantity',
             'type' => 'Text',
             'attributes' => array(

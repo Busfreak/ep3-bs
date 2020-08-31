@@ -12,6 +12,7 @@ class OccupiedForVisitors extends AbstractHelper
     {
         $view = $this->getView();
 		$teacher = false;
+		$constructions = false;
 
         $reservationsCount = count($reservations);
 
@@ -62,6 +63,9 @@ class OccupiedForVisitors extends AbstractHelper
         } else {
             $reservation = current($reservations);
             $booking = $reservation->needExtra('booking');
+            if ($booking->getMeta('constructions') == 1) {
+                $constructions = true;
+            }
 
             if ($square->getMeta('public_names', 'false') == 'true') {
                 $cellLabel = $booking->needExtra('user')->need('alias');
@@ -88,7 +92,14 @@ class OccupiedForVisitors extends AbstractHelper
 
                     $style = 'cc-multiple' . $cellGroup;
                     break;
+=======
             }
+        }
+        if ($constructions) {
+            $style .= " cc-constructions";
+        }
+        if ($teacher) {
+            $style .= " cc-teacher";
         }
         return $view->calendarCellLink($cellLabel, $view->url('square', [], $cellLinkParams), $style);
     }

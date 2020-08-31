@@ -33,7 +33,11 @@ echo $this->ajaxAwareScript('js-client/controller/square/booking/customization.j
     </div>
 
     <div class="sandbox">
+<<<<<<< HEAD
         <?= $this->squareTeacherChoice($square, $this->bookings) ?>
+=======
+        <?= $this->squareConstructionsChoice($square, $this->bookings) ?>
+>>>>>>> 740096d... Add Constructions to Booking
     </div>
 
     <div class="separator separator-line"></div>
@@ -61,7 +65,11 @@ echo $this->ajaxAwareScript('js-client/controller/square/booking/customization.j
         'q' => 1,
         'p' => 0,
         'pn' => 0,
+<<<<<<< HEAD
 		't' => 0]]);
+=======
+        'c' => 0]]);
+>>>>>>> 740096d... Add Constructions to Booking
 
     echo sprintf('<a href="%s" id="sb-button" class="default-button squarebox-internal-link">%s</a>',
         $url, $this->t('Continue to summary'));

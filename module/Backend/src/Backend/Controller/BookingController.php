@@ -138,6 +138,9 @@ class BookingController extends AbstractActionController
 
                 if ($d['bf-teacher'] == 0) {
                     $d['bf-teacher'] = null;
+
+                if ($d['bf-constructions'] == 0) {
+                    $d['bf-constructions'] = null;
                 }
 
                 if ($d['bf-rid']) {
@@ -145,14 +148,14 @@ class BookingController extends AbstractActionController
                     /* Update booking/reservation */
 
                     $savedBooking = $this->backendBookingUpdate($d['bf-rid'], $d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'],
-                        $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode'], $d['bf-teacher']);
+                        $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode'], $d['bf-teacher'], $d['bf-constructions']);
 
                 } else {
 
                     /* Create booking/reservation */
 
                     $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
-                        $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'), $d['bf-teacher']);
+                        $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'), $d['bf-teacher'], $d['bf-constructions']);
                 }
 
                 $this->flashMessenger()->addSuccessMessage('Booking has been saved');
@@ -177,6 +180,7 @@ class BookingController extends AbstractActionController
                     'bf-quantity' => $booking->get('quantity'),
                     'bf-notes' => $booking->getMeta('notes'),
                     'bf-teacher' => $booking->getMeta('teacher'),
+                    'bf-constructions' => $booking->getMeta('constructions'),
                 ));
 
                 if ($booking->get('status') == 'subscription' && $params['editMode'] == 'booking') {

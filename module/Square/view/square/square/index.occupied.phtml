@@ -14,6 +14,7 @@ foreach ($this->reservations as $rid => $reservation):
     echo"<p>";
         echo "<b>" . $this->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s') . "</b>";
         echo " " . $this->t('from') . " " . $reservation->getExtra('booking')->getExtra('user')->get('alias');
+<<<<<<< HEAD
 
         $booking = $reservation->getExtra('booking');
         $playerNames = $booking->getMeta('player-names');
@@ -30,6 +31,10 @@ foreach ($this->reservations as $rid => $reservation):
 
         if ($booking->getMeta('teacher') == 1) {
             echo " " . $this->t('(with teacher)');
+=======
+        if ($reservation->getExtra('booking')->getMeta('constructions') == 1) {
+            echo " " . "(mit Aufbauten)";
+>>>>>>> 740096d... Add Constructions to Booking
         }
     echo "</p>";
 endforeach;
