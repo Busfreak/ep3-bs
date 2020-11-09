@@ -178,7 +178,8 @@ class BookingController extends AbstractActionController
 
                 $bookingService = $serviceManager->get('Booking\Service\BookingService');
                 $bookingService->createSingle($user, $square, $quantityParam, $byproducts['dateStart'], $byproducts['dateEnd'], $bills, array(
-                    'player-names' => serialize($playerNames),'teacher' => $teacherParam,
+                    'player-names' => serialize($playerNames),
+                    'teacher' => $teacherParam,
                 ));
 
                 $this->flashMessenger()->addSuccessMessage(sprintf($this->t('%sCongratulations:%s Your %s has been booked!'),

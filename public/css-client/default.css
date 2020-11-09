@@ -18,6 +18,10 @@ a.cc-multiple:link,
 a.cc-multiple:visited { background-color: #547B97; }
 a.cc-multiple:hover { background-color: #334F6A; }
 
+a.cc-teacher:link,
+a.cc-teacher:visited { opacity: 1.0; color: #FFF; background-color: #d77338; }
+a.cc-teacher:hover { background-color: #d77338; }
+
 a.cc-conflict:link,
 a.cc-conflict:visited { background-color: #334F6A; }
 a.cc-conflict:hover { background-color: #334F6A; }

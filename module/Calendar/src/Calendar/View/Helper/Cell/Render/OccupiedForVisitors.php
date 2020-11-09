@@ -11,11 +11,54 @@ class OccupiedForVisitors extends AbstractHelper
     public function __invoke(array $reservations, array $cellLinkParams, Square $square, $user = null)
     {
         $view = $this->getView();
+		$teacher = false;
 
         $reservationsCount = count($reservations);
 
-        if ($reservationsCount > 1) {
-            return $view->calendarCellLink($this->view->t('Occupied'), $view->url('square', [], $cellLinkParams), 'cc-single');
+        if ($reservationsCount > 0) {
+            $counter = 0;
+            $cellLabel = "";
+            
+            foreach ($reservations as $reservation) {
+                $counter += 1;
+                $booking = $reservation->needExtra('booking');
+				if ($booking->getMeta('teacher') == 1) {
+					$teacher = true;
+				}
+				if ($booking->getMeta('constructions') == 1) {
+					$constructions = true;
+				}
+                
+                if ($booking) {
+                    $bookungUser = $booking->getExtra('user');
+                    if ($bookungUser) {
+                        if ($bookungUser->can('user.maintenance')) {
+                            $maintenance = true;
+                        }
+                    }
+                }
+
+                $quantity += $booking->need('quantity');
+           
+                if ($square->getMeta('public_names', 'false') == 'true') {
+                    $cellLabel .= $booking->needExtra('user')->need('alias');
+                } else if ($square->getMeta('private_names', 'false') == 'true' && $user) {
+                    if ($user->getMeta('namedisplay') == 'shortLastname') {
+                        $cellLabel .= $booking->needExtra('user')->getMeta('firstname') . " " . substr($booking->needExtra('user')->getMeta('lastname'), 0, 1) . ".";
+                    } else if ($user->getMeta('namedisplay') == 'fullName') {
+                        $cellLabel .= $booking->needExtra('user')->getMeta('firstname') . " " . $booking->needExtra('user')->getMeta('lastname');
+                    } else {
+                        $cellLabel .= substr($booking->needExtra('user')->getMeta('firstname'), 0, 1) . ". " . $booking->needExtra('user')->getMeta('lastname');
+                    }
+                } else {
+                    $cellLabel = $this->view->t('Occupied');
+                }               
+                
+                if ($counter < $reservationsCount) {
+                    $cellLabel .= '</div><div class="cc-label ">';
+                }
+            }
+            $style = 'cc-single cc-count-' . $counter;
         } else {
             $reservation = current($reservations);
             $booking = $reservation->needExtra('booking');
@@ -23,7 +66,7 @@ class OccupiedForVisitors extends AbstractHelper
             if ($square->getMeta('public_names', 'false') == 'true') {
                 $cellLabel = $booking->needExtra('user')->need('alias');
             } else if ($square->getMeta('private_names', 'false') == 'true' && $user) {
-                $cellLabel = $booking->needExtra('user')->need('alias');
+                $cellLabel = substr($booking->needExtra('user')->getMeta('firstname'), 0, 1) . ". " . $booking->needExtra('user')->getMeta('lastname');
             } else {
                 $cellLabel = null;
             }
@@ -36,15 +79,18 @@ class OccupiedForVisitors extends AbstractHelper
                         $cellLabel = $this->view->t('Occupied');
                     }
 
-                    return $view->calendarCellLink($cellLabel, $view->url('square', [], $cellLinkParams), 'cc-single' . $cellGroup);
+                    $style = 'cc-single' . $cellGroup;
+                    break;
                 case 'subscription':
                     if (! $cellLabel) {
                         $cellLabel = $this->view->t('Subscription');
                     }
 
-                    return $view->calendarCellLink($cellLabel, $view->url('square', [], $cellLinkParams), 'cc-multiple' . $cellGroup);
+                    $style = 'cc-multiple' . $cellGroup;
+                    break;
             }
         }
+        return $view->calendarCellLink($cellLabel, $view->url('square', [], $cellLinkParams), $style);
     }
 
 }

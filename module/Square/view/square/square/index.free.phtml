@@ -7,6 +7,30 @@ echo sprintf('<p><span class="green">' . $this->t('This %s is still free.') . '<
 
 echo $this->squareCapacityInfo($square, $this->quantity);
 
+foreach ($this->reservations as $rid => $reservation):
+    echo"<p>";
+        echo "<b>" . $this->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s') . "</b>";
+        echo " " . $this->t('from') . " " . $reservation->getExtra('booking')->getExtra('user')->get('alias');
+
+        $booking = $reservation->getExtra('booking');
+        $playerNames = $booking->getMeta('player-names');
+        $playerNameNotes = '';
+        if ($playerNames) {
+            $playerNamesUnserialized = @unserialize($booking->getMeta('player-names'));
+            if ($playerNamesUnserialized && is_array($playerNamesUnserialized)) {
+                foreach ($playerNamesUnserialized as $i => $playerName) {
+                    $playerNameNotes .= ' & ' . $playerName['value'];
+                }
+            }
+        }
+        echo $playerNameNotes;
+
+        if ($booking->getMeta('teacher') == 1) {
+            echo " " . $this->t('(with teacher)');
+        }
+    echo "</p>";
+endforeach;
+
 if ($square->need('status') == 'readonly') {
     if ($square->getMeta('readonly.message')) {
         echo '<p class="gray">' . $square->getMeta('readonly.message') .'</p>';

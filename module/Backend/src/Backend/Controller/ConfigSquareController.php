@@ -70,6 +70,7 @@ class ConfigSquareController extends AbstractActionController
                 $square->set('range_book', (float) $editData['cf-range-book'] * 60 * 60 * 24);
                 $square->set('max_active_bookings', $editData['cf-max-active-bookings']);
                 $square->set('range_cancel', $editData['cf-range-cancel'] * 60 * 60);
+                $square->setMeta('max_teachers', $editData['cf-max-teachers']);
 	            $square->setMeta('label.free', $editData['cf-label-free'], $locale);
 
                 $squareManager->save($square);
@@ -110,6 +111,7 @@ class ConfigSquareController extends AbstractActionController
                     'cf-range-book' => round($square->get('range_book') / 60 / 60 / 24),
                     'cf-max-active-bookings' => $square->get('max_active_bookings'),
                     'cf-range-cancel' => round($square->get('range_cancel') / 60 / 60, 2),
+	                'cf-max-teachers' => $square->getMeta('max_teachers'),
 	                'cf-label-free' => $square->getMeta('label.free'),
                 ));
             } else {
@@ -127,6 +129,7 @@ class ConfigSquareController extends AbstractActionController
                     'cf-min-range-book' => 0,
                     'cf-range-book' => 56,
                     'cf-max-active-bookings' => 0,
+                    'cf-max-teachers' => 1,
                     'cf-range-cancel' => 24,
                 ));
             }

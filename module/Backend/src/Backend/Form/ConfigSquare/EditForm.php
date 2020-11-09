@@ -276,6 +276,20 @@ class EditForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'cf-max-teachers',
+            'type' => 'Text',
+            'attributes' => array(
+                'id' => 'cf-max-teachers',
+                'style' => 'width: 80px;',
+            ),
+            'options' => array(
+                'label' => 'Anzahl der gleichzeitig unterrichtenden Reitlehrer einschränken',
+                'notes' => 'Auf 0 setzen, um beliebig viele Reitlehrer zu erlauben',
+                'postfix' => 'gleichzeitige Reitlehrer pro Einheit',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'cf-submit',
             'type' => 'Submit',
             'attributes' => array(
@@ -528,6 +542,26 @@ class EditForm extends Form
                         'name' => 'Regex',
                         'options' => array(
                             'pattern' => '~^[0-9]+(\.[0-9]{1,2})?$~',
+                            'message' => 'Please type a number here',
+                        ),
+                    ),
+                ),
+            ),
+            'cf-max-teachers' => array(
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array(
+                            'message' => 'Please type something here',
+                        ),
+                        'break_chain_on_failure' => true,
+                    ),
+                    array(
+                        'name' => 'Digits',
+                        'options' => array(
                             'message' => 'Please type a number here',
                         ),
                     ),
