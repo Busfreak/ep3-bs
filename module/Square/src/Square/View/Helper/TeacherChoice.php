@@ -33,17 +33,17 @@ class TeacherChoice extends AbstractHelper
 
         if (!$withTeacher) {
             $html .= '<label for="sb-teacher" style="margin-right: 8px;">';
-            $html .= $view->t('Mit Reitlehrer?');
+            $html .= $view->t('With Teacher?');
             $html .= '</label>';
 
             $html .= '<select id="sb-teacher" style="min-width: 64px;">';
 
-            $html .= '<option value="0">Nein</option>';
-            $html .= '<option value="1">Ja</option>';
+            $html .= '<option value="0">' . $view->t('No') . '</option>';
+            $html .= '<option value="1">' . $view->t('Yes') . '</option>';
 
             $html .= '</select>';
         } else {
-            $html .= 'Dieser Zeitraum ist bereits mit Reitlehrer gebucht.';
+            $html .= $view->t('Teacher not possible.');
         }
 
         $quantityOccupied = $square->need('capacity') - $quantityAvailable;

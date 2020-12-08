@@ -88,8 +88,8 @@ class EditForm extends Form
             'options' => array(
                 'label' => 'Teacher',
                 'value_options' => array(
-                    '0' => 'Nein',
-                    '1' => 'Ja'
+                    '0' => 'No',
+                    '1' => 'Yes'
                 ),
             ),
         ));

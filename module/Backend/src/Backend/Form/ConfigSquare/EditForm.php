@@ -283,9 +283,9 @@ class EditForm extends Form
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Anzahl der gleichzeitig unterrichtenden Reitlehrer einschränken',
-                'notes' => 'Auf 0 setzen, um beliebig viele Reitlehrer zu erlauben',
-                'postfix' => 'gleichzeitige Reitlehrer pro Einheit',
+                'label' => 'Limit the number of teacher teaching at the same time',
+                'notes' => 'Set to 0 to disable teacher',
+                'postfix' => 'simultaneous teacher per unit',
             ),
         ));
 

@@ -392,4 +392,8 @@ return array(
     'Booked by' => 'Gebucht von',
 
     'User matched by' => 'Benutzer ermittelt nach',
+
+    'Set to 0 to disable teacher' => 'Auf 0 setzen, um keine Reitlehrer zu erlauben',
+    'simultaneous teacher per unit' => 'gleichzeitige Reitlehrer pro Einheit',
+    'Limit the number of teacher teaching at the same time' => 'Anzahl der gleichzeitig unterrichtenden Reitlehrer einschränken',
 );
