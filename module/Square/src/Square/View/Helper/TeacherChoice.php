@@ -19,19 +19,17 @@ class TeacherChoice extends AbstractHelper
     public function __invoke(Square $square, array $bookings)
     {
         $quantityAvailable = $square->need('capacity');
+        $teacherAvailable = $square->getMeta('max_teachers');
 
-        $withTeacher = false;
         foreach ($bookings as $booking) {
-            if ($booking->getMeta('teacher') == 1) {
-                $withTeacher = true;
-            }
             $quantityAvailable -= $booking->need('quantity');
+            $teacherAvailable -= $booking->getMeta('teacher');
         }
 
         $view = $this->getView();
         $html = '';
 
-        if (!$withTeacher) {
+        if ($teacherAvailable > 0) {
             $html .= '<label for="sb-teacher" style="margin-right: 8px;">';
             $html .= $view->t('With Teacher?');
             $html .= '</label>';

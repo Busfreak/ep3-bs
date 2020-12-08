@@ -32,9 +32,11 @@ echo $this->ajaxAwareScript('js-client/controller/square/booking/customization.j
         <?= $this->squareQuantityChoice($square, $this->bookings) ?>
     </div>
 
-    <div class="sandbox">
-        <?= $this->squareTeacherChoice($square, $this->bookings) ?>
-    </div>
+    <?php if ($square->getMeta('max_teachers') > 0): ?>
+        <div class="sandbox">
+            <?= $this->squareTeacherChoice($square, $this->bookings) ?>
+        </div>
+    <?php endif; ?>
 
     <div class="separator separator-line"></div>
 
