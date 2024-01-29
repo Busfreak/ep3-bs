@@ -93,11 +93,8 @@ return array(
 
             'SquareProductChoice' => 'Square\View\Helper\ProductChoiceFactory',
             'SquareQuantityChoice' => 'Square\View\Helper\QuantityChoiceFactory',
-<<<<<<< HEAD
             'SquareTeacherChoice' => 'Square\View\Helper\TeacherChoiceFactory',
-=======
             'SquareConstructionsChoice' => 'Square\View\Helper\ConstructionsChoiceFactory',
->>>>>>> 740096d... Add Constructions to Booking
             'SquareTimeBlockChoice' => 'Square\View\Helper\TimeBlockChoiceFactory',
         ),
     ),
