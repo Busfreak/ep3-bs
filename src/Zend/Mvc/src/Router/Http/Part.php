@@ -22,6 +22,13 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Part extends TreeRouteStack implements RouteInterface
 {
+     /**
+     * Priority used for route stacks.
+     *
+     * @var int
+     */
+    public $priority;
+
     /**
      * RouteInterface to match.
      *

@@ -22,6 +22,13 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Chain extends TreeRouteStack implements RouteInterface
 {
+     /**
+     * Priority used for route stacks.
+     *
+     * @var int
+     */
+    public $priority;
+
     /**
      * Chain routes.
      *

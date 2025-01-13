@@ -20,6 +20,13 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Segment implements RouteInterface
 {
+     /**
+     * Priority used for route stacks.
+     *
+     * @var int
+     */
+    public $priority;
+
     /**
      * Cache for the encode output.
      *

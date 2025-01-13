@@ -19,6 +19,13 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Regex implements RouteInterface
 {
+     /**
+     * Priority used for route stacks.
+     *
+     * @var int
+     */
+    public $priority;
+
     /**
      * Regex to match.
      *

@@ -21,6 +21,13 @@ use Zend\Stdlib\RequestInterface as Request;
  */
 class Query implements RouteInterface
 {
+     /**
+     * Priority used for route stacks.
+     *
+     * @var int
+     */
+    public $priority;
+
     /**
      * Default values.
      *
