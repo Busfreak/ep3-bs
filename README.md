@@ -1,3 +1,6 @@
+# Änderungen zum Original in diesem Fork
+- Anpassungen an PHP 8.2: Dank an https://github.com/wilddom/ep3-bs
+
 # ep-3 Bookingsystem
 
 The ep-3 Bookingsystem is an open source (MIT licensed) web application to enable users to check and book free places of
