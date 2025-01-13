@@ -1,7 +1,8 @@
 # Änderungen zum Original in diesem Fork
 - Anpassungen an PHP 8.2: Dank an https://github.com/wilddom/ep3-bs
 - Kalender nur sichtbar für angemeldete User
-- Neue User bekommen eine Benachrichtigungsmail, wenn ihr Account aktiviert wurde.
+- Neue User bekommen eine Benachrichtigungsmail, wenn ihr Account aktiviert wurde
+- Im Userdialog des Kalenders werden zusätzliche Details der parallelen Buchungen angezeigt
 
 # ep-3 Bookingsystem
 
