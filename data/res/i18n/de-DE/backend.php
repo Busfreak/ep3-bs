@@ -389,4 +389,15 @@ return array(
     'Booked by' => 'Gebucht von',
 
     'User matched by' => 'Benutzer ermittelt nach',
+
+    'This %s has multiple reservations here:' => 'Dieses %s ist hier mehrfach belegt:',
+    'Teacher' => 'Reitlehrer',
+    'With Teacher?' => 'Mit Reitlehrer?',
+    'Teacher not possible.' => 'Reitlehrer nicht möglich.',
+    'No' => 'Nein',
+    'Yes' => 'Ja',
+    'Set to 0 to disable teacher' => 'Auf 0 setzen, um keine Reitlehrer zu erlauben',
+    'simultaneous teacher per unit' => 'gleichzeitige Reitlehrer pro Einheit',
+    'Limit the number of teacher teaching at the same time' => 'Anzahl der gleichzeitig unterrichtenden Reitlehrer einschränken',
+
 );

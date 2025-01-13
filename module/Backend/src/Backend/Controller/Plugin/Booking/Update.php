@@ -32,7 +32,7 @@ class Update extends AbstractPlugin
     }
 
     public function __invoke($rid, $newUser, $newTimeStart, $newTimeEnd, $newDate, $newSquare,
-        $newStatusBilling, $newQuantity, $newNotes = null, $mode = null)
+        $newStatusBilling, $newQuantity, $newNotes = null, $mode = null, $teacher = null)
     {
         $controller = $this->getController();
         $controller->authorize('admin.booking');
@@ -92,6 +92,7 @@ class Update extends AbstractPlugin
                 $booking->set('status_billing', $newStatusBilling);
                 $booking->set('quantity', $newQuantity);
                 $booking->setMeta('notes', $newNotes);
+                $booking->setMeta('teacher', $teacher);
 
                 $this->bookingManager->save($booking);
             }

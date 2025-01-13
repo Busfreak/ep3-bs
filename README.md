@@ -3,6 +3,7 @@
 - Kalender nur sichtbar für angemeldete User
 - Neue User bekommen eine Benachrichtigungsmail, wenn ihr Account aktiviert wurde
 - Im Userdialog des Kalenders werden zusätzliche Details der parallelen Buchungen angezeigt
+- Reitlehrer können mit angegeben werden
 
 # ep-3 Bookingsystem
 

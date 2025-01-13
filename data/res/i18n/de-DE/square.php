@@ -109,4 +109,6 @@ return array(
     'and email address' => 'und E-Mail Adresse',
     'and phone number' => 'und Telefonnummer',
 
+    '(with teacher)' => '(mit Reitlehrer)',
+
 );

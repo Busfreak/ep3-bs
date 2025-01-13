@@ -287,6 +287,20 @@ class EditForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'cf-max-teachers',
+            'type' => 'Text',
+            'attributes' => array(
+                'id' => 'cf-max-teachers',
+                'style' => 'width: 80px;',
+            ),
+            'options' => array(
+                'label' => 'Limit the number of teacher teaching at the same time',
+                'notes' => 'Set to 0 to disable teacher',
+                'postfix' => 'simultaneous teacher per unit',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'cf-submit',
             'type' => 'Submit',
             'attributes' => array(
@@ -544,8 +558,28 @@ class EditForm extends Form
                     ),
                 ),
             ),
-	        'cf-label-free' => array(
-		        'required' => false,
+            'cf-max-teachers' => array(
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array(
+                            'message' => 'Please type something here',
+                        ),
+                        'break_chain_on_failure' => true,
+                    ),
+                    array(
+                        'name' => 'Digits',
+                        'options' => array(
+                            'message' => 'Please type a number here',
+                        ),
+                    ),
+                ),
+            ),
+            'cf-label-free' => array(
+                'required' => false,
                 'filters' => array(
                     array('name' => 'StringTrim'),
                 ),
